@@ -1,6 +1,7 @@
 
 var searchbtn = $("#search-btn")
 var cityInput = $("#city-input")
+var appendCities = $("#display-cities")
 
 
 //onclick search functionality
@@ -10,3 +11,5 @@ searchbtn.click(function() {
     savedCities.push(recentCity);
     localStorage.setItem("citySearchesArray", JSON.stringify(savedCities));
 }); 
+
+// appendCities.append(recentCity)
