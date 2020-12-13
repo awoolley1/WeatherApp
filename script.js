@@ -1,7 +1,7 @@
 
 var searchbtn = $("#search-btn")
 var cityInput = $("#city-input")
-var appendCities = $("#display-cities")
+var appendCitiesHere = $("#display-cities")
 
 
 //onclick search functionality
@@ -12,4 +12,17 @@ searchbtn.click(function() {
     localStorage.setItem("citySearchesArray", JSON.stringify(savedCities));
 }); 
 
-// appendCities.append(recentCity)
+
+var citiesDisplay = (JSON.parse(localStorage.getItem("citySearchesArray")))
+
+ for (let i = 0; i < citiesDisplay.length; i++) {
+
+    var cityButton=$('<input/>').attr({
+        type: "button",
+        id: "cityName",
+        class: "btn btn-success  btn-outline-light" ,
+        value: citiesDisplay[i] 
+    })
+    appendCitiesHere.append(cityButton)
+ }
+
