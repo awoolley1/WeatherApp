@@ -23,23 +23,25 @@ var citiesDisplay = (JSON.parse(localStorage.getItem("citySearchesArray")))
 
  cityInput.val("")
 
+ //weather API
+var city = citiesDisplay[citiesDisplay.length-1]
+var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8"
+
+function weatherGet(){
+    $.ajax({
+        url: url,
+        method: "GET"
+    })
+    .then(function(response){
+    console.log (city)
+    console.log(response)
+    })
+} 
+
+weatherGet()
+
 }); 
 
 
 
 
- //weather API
-
-//  var city = cityInput.val()
-//  var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8"
-
-// function weather(){
-//     $.ajax({
-//         url: url,
-//         method: "GET"
-//     })
-//     .then(function(response){
-//    // var responseName = response.name;
-//     console.log(response)
-//     })
-// } 
