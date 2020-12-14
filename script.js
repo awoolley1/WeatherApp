@@ -57,6 +57,10 @@ function weatherGet(){
 
     var urlUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
 
+    uvGet()
+
+    })
+
     function uvGet(){
         $.ajax({
             url: urlUV,
@@ -70,16 +74,12 @@ function weatherGet(){
         })
     
     } 
-
-    })
-
-
 } 
 
 
 
 weatherGet()
-//UVGet()
+
 
 }); 
 
