@@ -7,6 +7,8 @@ var temperature = $("#temp")
 var humidity = $("#humid")
 var windSpeed = $("#wind")
 var uv = $("#uv")
+var lat
+var lon
 
 
 //onclick search functionality
@@ -40,13 +42,13 @@ function weatherGet(){
     .then(function(response){
 
     var lat = response.coord.lat;
-    var lon = response.coord.lon;var date = new Date((response.dt)*1000);
+    var lon = response.coord.lon;
+    var date = new Date((response.dt)*1000);
     var month = date.getMonth();
     var day = date.getDay();
     console.log(date);
     console.log(month);
-    
-    console.log(response)
+
     nameDate.text((response.name) + " " + (month) + " " + (day))
     temperature.text("Temperature today is: " + (((response.main.temp)-273.15)*1.8+32).toFixed(1) + " degrees Fahrenheit")
     windSpeed.text("Wind speed today is: " + response.wind.speed + " MPH")
@@ -61,7 +63,7 @@ function weatherGet(){
             method: "GET"
         })
         .then(function(response){
-            consolelog(this.response)
+            consolelog(response)
     
         uv.text("UV index today is:" + (response.value))
       
