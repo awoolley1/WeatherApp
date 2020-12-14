@@ -23,18 +23,26 @@ var citiesDisplay = (JSON.parse(localStorage.getItem("citySearchesArray")))
     var cityButton=$('<input/>').attr({
         type: "button",
         id: "cityName",
-        class: "btn btn-success  btn-outline-light" ,
+        class: "btn btn-success  btn-outline-light btn-added" ,
         value: citiesDisplay[citiesDisplay.length-1] 
     })
     appendCitiesHere.append(cityButton)
 
  cityInput.val("")
 
- //weather API
-var city = citiesDisplay[citiesDisplay.length-1]
-var urlWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
+ weatherGet(recentCity)
 
-function weatherGet(){
+ //weather API
+var cityLocalRecent = citiesDisplay[citiesDisplay.length-1]
+
+//click city button to recall
+$(".btn-added").click(function() {
+    var cityClick = $(this).val();
+    weatherGet(cityClick)
+  });
+
+function weatherGet(cityParam){
+    var urlWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + cityParam + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
     $.ajax({
         url: urlWeather,
         method: "GET"
