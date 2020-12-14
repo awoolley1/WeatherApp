@@ -37,7 +37,7 @@ var cityLocalRecent = citiesDisplay[citiesDisplay.length-1]
 
 //click city button to recall
 $(".btn-added").click(function() {
-    var cityClick = $(this).val();
+    var cityClick = $(this).val(); 
     weatherGet(cityClick)
   });
 
@@ -72,8 +72,19 @@ function weatherGet(cityParam){
             method: "GET"
         })
         .then(function(response){
-        uv.text("UV index today is: " + (response.value))
+        
+        var uvCode = response.value;
+        uv.text("UV index today is: " + (uvCode))
 
+        if (uvCode <= 2) {
+            uv.css({'background-color':'GreenYellow'})
+        } else if (uvCode <= 5) {
+            uv.css({'background-color':'Khaki'})
+        } else if (uvCode <= 7) {
+            uv.css({'background-color':'LightSalmon'})
+        } else {
+            uv.css({'background-color':'LightCoral'})
+        }
         
         })
     } 
