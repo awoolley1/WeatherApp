@@ -39,37 +39,38 @@ function weatherGet(){
     })
     .then(function(response){
 
-    var date = new Date((response.dt)*1000)
-    var month = date.getMonth()
-    var day = date.getDay()
-    console.log(date)
-    console.log(month)
+    var lat = response.coord.lat;
+    var lon = response.coord.lon;var date = new Date((response.dt)*1000);
+    var month = date.getMonth();
+    var day = date.getDay();
+    console.log(date);
+    console.log(month);
     
     console.log(response)
     nameDate.text((response.name) + " " + (month) + " " + (day))
     temperature.text("Temperature today is: " + (((response.main.temp)-273.15)*1.8+32).toFixed(1) + " degrees Fahrenheit")
     windSpeed.text("Wind speed today is: " + response.wind.speed + " MPH")
     humidity.text("Humidity today is: " + response.main.humidity + "%")
-    })
 
-    var lat = response.coord.lat;
-    var lon = response.coord.lon;
 
     var urlUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
 
-    function UVGet(){
+    function uvGet(){
         $.ajax({
             url: urlUV,
             method: "GET"
         })
         .then(function(response){
-            consolelog(response)
+            consolelog(this.response)
     
-        uv.text("UV index today is:" + "")
+        uv.text("UV index today is:" + (response.value))
       
         })
     
     } 
+
+    })
+
 
 } 
 
