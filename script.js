@@ -48,11 +48,10 @@ function weatherGet(){
     var day = date.getDay();
 
     var iconCode = response.weather[0].icon;
-    var iconImage = document.createElement("img");
-    iconImage.src = "http://openweathermap.org/img/w/" + iconCode + ".png";
-    console.log(iconImage.src)
+    var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
 
-    nameDate.text((response.name) + " " + (month) + " " + (day) + " " + (iconImage))
+    nameDate.text((response.name) + " " + (month) + " " + (day))
+    nameDate.append($("<img>",{src: iconURL}))
     temperature.text("Temperature today is: " + (((response.main.temp)-273.15)*1.8+32).toFixed(1) + " degrees Fahrenheit")
     windSpeed.text("Wind speed today is: " + response.wind.speed + " MPH")
     humidity.text("Humidity today is: " + response.main.humidity + "%")
