@@ -88,8 +88,38 @@ function weatherGet(cityParam){
         
         })
     } 
+
+    function fiveDayGet(){
+        var urlFiveDay = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
+
+        $.ajax({
+            url: urlFiveDay,
+            method: "GET"
+        })
+        .then(function(response){
+     
+            var iconCode = response.weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+
+            var day1ND = $("#nd1");
+            var day1Icon = $("icon1");
+            var day1Temp = $("#temp1");
+            var day1Humid = $("#humid1");
+        
+            nameDate.text((response.name) + " " + (month) + " " + (day))
+            nameDate.append($("<img>",{src: iconURL}))
+            temperature.text("Temperature today is: " + (((response.main.temp)-273.15)*1.8+32).toFixed(1) + " degrees Fahrenheit")
+            windSpeed.text("Wind speed today is: " + response.wind.speed + " MPH")
+            humidity.text("Humidity today is: " + response.main.humidity + "%")
+        
+        })
+    } 
+
     uvGet()
+    fiveDayGet()
     })
+
+    
 } 
 weatherGet()
 }); 
