@@ -52,14 +52,14 @@ function weatherGet(cityParam){
 
     var lat = response.coord.lat;
     var lon = response.coord.lon;
-    var date = new Date((response.dt)*1000);
-    var month = date.getMonth();
-    var day = date.getDay();
+    var month = moment().format("MMMM");
+    var day = moment().format("dddd");
+    var dayNumber = moment().format("Do");
 
     var iconCode = response.weather[0].icon;
     var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
 
-    nameDate.text((response.name) + " " + (month) + " " + (day))
+    nameDate.text((response.name) + " " + (day) + " " + (month) + " " + (dayNumber))
     nameDate.append($("<img>",{src: iconURL}))
     temperature.text("Temperature today is: " + (((response.main.temp)-273.15)*1.8+32).toFixed(1) + " degrees Fahrenheit")
     windSpeed.text("Wind speed today is: " + response.wind.speed + " MPH")
@@ -95,10 +95,10 @@ function weatherGet(cityParam){
         var day1Icon = $("#icon1");
         var day1Temp = $("#temp1");
         var day1Humid = $("#humid1");
-        // var day2ND = $("#nd2");
-        // var day2Icon = $("#icon2");
-        // var day2Temp = $("#temp2");
-        // var day2Humid = $("#humid2");
+        var day2ND = $("#nd2");
+        var day2Icon = $("#icon2");
+        var day2Temp = $("#temp2");
+        var day2Humid = $("#humid2");
         // var day3ND = $("#nd3");
         // var day3Icon = $("#icon3");
         // var day3Temp = $("#temp3");
@@ -122,13 +122,19 @@ function weatherGet(cityParam){
             console.log(response)
             var icon1Code = response.daily[1].weather[0].icon;
             var icon1URL = "http://openweathermap.org/img/w/" + icon1Code + ".png";
-            console.log(icon1URL)
+            var icon2Code = response.daily[2].weather[0].icon;
+            var icon2URL = "http://openweathermap.org/img/w/" + icon2Code + ".png";
 
 
-            //day1ND.text=date
+            day1ND.text(moment().add(1,'days').format("MMM D yyyy"))
             day1Icon.append($("<img>",{src: icon1URL}))
             day1Temp.text("Temp: " + (((response.daily[1].temp.day)-273.15)*1.8+32).toFixed(1))
             day1Humid.text("Humidity: " + (response.daily[1].humidity) + "%")
+
+            day2ND.text(moment().add(2,'days').format("MMM D yyyy"))
+            day2Icon.append($("<img>",{src: icon2URL}))
+            day2Temp.text("Temp: " + (((response.daily[2].temp.day)-273.15)*1.8+32).toFixed(1))
+            day2Humid.text("Humidity: " + (response.daily[2].humidity) + "%")
         
         })
     } 
