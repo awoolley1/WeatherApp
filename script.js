@@ -37,7 +37,6 @@ var citiesDisplay = (JSON.parse(localStorage.getItem("citySearchesArray")))
 $(".btn-added").click(function() {
     var cityClick = $(this).val(); 
     weatherGet(cityClick)
-    fiveDayGet(cityClick)
   });
 
 function weatherGet(cityParam){
@@ -117,7 +116,6 @@ function weatherGet(cityParam){
             method: "GET"
         })
         .then(function(response){
-            console.log(response)
             var icon1Code = response.daily[1].weather[0].icon;
             var icon1URL = "http://openweathermap.org/img/w/" + icon1Code + ".png";
             var icon2Code = response.daily[2].weather[0].icon;
@@ -131,27 +129,27 @@ function weatherGet(cityParam){
 
 
             day1ND.text(moment().add(1,'days').format("MMM D yyyy"))
-            day1Icon.append($("<img>",{src: icon1URL}))
+            day1Icon.attr("src", icon1URL);
             day1Temp.text("Temp: " + (((response.daily[1].temp.day)-273.15)*1.8+32).toFixed(1))
             day1Humid.text("Humidity: " + (response.daily[1].humidity) + "%")
 
             day2ND.text(moment().add(2,'days').format("MMM D yyyy"))
-            day2Icon.append($("<img>",{src: icon2URL}))
+            day2Icon.attr("src", icon2URL);
             day2Temp.text("Temp: " + (((response.daily[2].temp.day)-273.15)*1.8+32).toFixed(1))
             day2Humid.text("Humidity: " + (response.daily[2].humidity) + "%")
 
             day3ND.text(moment().add(3,'days').format("MMM D yyyy"))
-            day3Icon.append($("<img>",{src: icon3URL}))
+            day3Icon.attr("src", icon3URL);
             day3Temp.text("Temp: " + (((response.daily[3].temp.day)-273.15)*1.8+32).toFixed(1))
             day3Humid.text("Humidity: " + (response.daily[3].humidity) + "%")
 
             day4ND.text(moment().add(4,'days').format("MMM D yyyy"))
-            day4Icon.append($("<img>",{src: icon4URL}))
+            day4Icon.attr("src", icon4URL);
             day4Temp.text("Temp: " + (((response.daily[4].temp.day)-273.15)*1.8+32).toFixed(1))
             day4Humid.text("Humidity: " + (response.daily[4].humidity) + "%")
 
             day5ND.text(moment().add(5,'days').format("MMM D yyyy"))
-            day5Icon.append($("<img>",{src: icon5URL}))
+            day5Icon.attr("src", icon5URL);
             day5Temp.text("Temp: " + (((response.daily[5].temp.day)-273.15)*1.8+32).toFixed(1))
             day5Humid.text("Humidity: " + (response.daily[5].humidity) + "%")
         
@@ -247,7 +245,6 @@ function loadRecent(){
                 method: "GET"
             })
             .then(function(response){
-                console.log(response)
                 var icon1Code = response.daily[1].weather[0].icon;
                 var icon1URL = "http://openweathermap.org/img/w/" + icon1Code + ".png";
                 var icon2Code = response.daily[2].weather[0].icon;
@@ -261,27 +258,27 @@ function loadRecent(){
     
     
                 day1ND.text(moment().add(1,'days').format("MMM D yyyy"))
-                day1Icon.append($("<img>",{src: icon1URL}))
+                day1Icon.attr("src", icon1URL);
                 day1Temp.text("Temp: " + (((response.daily[1].temp.day)-273.15)*1.8+32).toFixed(1))
                 day1Humid.text("Humidity: " + (response.daily[1].humidity) + "%")
     
                 day2ND.text(moment().add(2,'days').format("MMM D yyyy"))
-                day2Icon.append($("<img>",{src: icon2URL}))
+                day2Icon.attr("src", icon2URL);
                 day2Temp.text("Temp: " + (((response.daily[2].temp.day)-273.15)*1.8+32).toFixed(1))
                 day2Humid.text("Humidity: " + (response.daily[2].humidity) + "%")
     
                 day3ND.text(moment().add(3,'days').format("MMM D yyyy"))
-                day3Icon.append($("<img>",{src: icon3URL}))
+                day3Icon.attr("src", icon3URL);
                 day3Temp.text("Temp: " + (((response.daily[3].temp.day)-273.15)*1.8+32).toFixed(1))
                 day3Humid.text("Humidity: " + (response.daily[3].humidity) + "%")
     
                 day4ND.text(moment().add(4,'days').format("MMM D yyyy"))
-                day4Icon.append($("<img>",{src: icon4URL}))
+                day4Icon.attr("src", icon4URL);
                 day4Temp.text("Temp: " + (((response.daily[4].temp.day)-273.15)*1.8+32).toFixed(1))
                 day4Humid.text("Humidity: " + (response.daily[4].humidity) + "%")
     
                 day5ND.text(moment().add(5,'days').format("MMM D yyyy"))
-                day5Icon.append($("<img>",{src: icon5URL}))
+                day5Icon.attr("src", icon5URL);
                 day5Temp.text("Temp: " + (((response.daily[5].temp.day)-273.15)*1.8+32).toFixed(1))
                 day5Humid.text("Humidity: " + (response.daily[5].humidity) + "%")
             
