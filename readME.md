@@ -7,8 +7,8 @@ Screenshots:
 ![Screenshot 1](./Assets/Capture1.PNG)
 
 Links: 
-*GitHub Repository: https://github.com/awoolley1/CalendarApplication
-*Live URL: https://awoolley1.github.io/CalendarApplication/
+*GitHub Repository: https://github.com/awoolley1/WeatherApp
+*Live URL: https://awoolley1.github.io/WeatherApp/
 
 Author: 
 *Alex Woolley; https://github.com/awoolley1; alexander.s.woolley@gmail.com
