@@ -39,6 +39,7 @@ var cityLocalRecent = citiesDisplay[citiesDisplay.length-1]
 $(".btn-added").click(function() {
     var cityClick = $(this).val(); 
     weatherGet(cityClick)
+    fiveDayGet(cityClick)
   });
 
 function weatherGet(cityParam){
@@ -90,6 +91,27 @@ function weatherGet(cityParam){
     } 
 
     function fiveDayGet(){
+        var day1ND = $("#nd1");
+        var day1Icon = $("#icon1");
+        var day1Temp = $("#temp1");
+        var day1Humid = $("#humid1");
+        // var day2ND = $("#nd2");
+        // var day2Icon = $("#icon2");
+        // var day2Temp = $("#temp2");
+        // var day2Humid = $("#humid2");
+        // var day3ND = $("#nd3");
+        // var day3Icon = $("#icon3");
+        // var day3Temp = $("#temp3");
+        // var day3Humid = $("#humid3");
+        // var day4ND = $("#nd4");
+        // var day4Icon = $("#icon4");
+        // var day4Temp = $("#temp4");
+        // var day4Humid = $("#humid4");
+        // var day5ND = $("#nd5");
+        // var day5Icon = $("#icon5");
+        // var day5Temp = $("#temp5");
+        // var day5Humid = $("#humid5");
+        
         var urlFiveDay = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
 
         $.ajax({
@@ -97,20 +119,16 @@ function weatherGet(cityParam){
             method: "GET"
         })
         .then(function(response){
-     
-            var iconCode = response.weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+            console.log(response)
+            var icon1Code = response.daily[1].weather[0].icon;
+            var icon1URL = "http://openweathermap.org/img/w/" + icon1Code + ".png";
+            console.log(icon1URL)
 
-            var day1ND = $("#nd1");
-            var day1Icon = $("icon1");
-            var day1Temp = $("#temp1");
-            var day1Humid = $("#humid1");
-        
-            nameDate.text((response.name) + " " + (month) + " " + (day))
-            nameDate.append($("<img>",{src: iconURL}))
-            temperature.text("Temperature today is: " + (((response.main.temp)-273.15)*1.8+32).toFixed(1) + " degrees Fahrenheit")
-            windSpeed.text("Wind speed today is: " + response.wind.speed + " MPH")
-            humidity.text("Humidity today is: " + response.main.humidity + "%")
+
+            //day1ND.text=date
+            day1Icon.append($("<img>",{src: icon1URL}))
+            day1Temp.text("Temp: " + (((response.daily[1].temp.day)-273.15)*1.8+32).toFixed(1))
+            day1Humid.text("Humidity: " + (response.daily[1].humidity) + "%")
         
         })
     } 
@@ -121,7 +139,6 @@ function weatherGet(cityParam){
 
     
 } 
-weatherGet()
 }); 
 
 
