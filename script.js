@@ -99,18 +99,18 @@ function weatherGet(cityParam){
         var day2Icon = $("#icon2");
         var day2Temp = $("#temp2");
         var day2Humid = $("#humid2");
-        // var day3ND = $("#nd3");
-        // var day3Icon = $("#icon3");
-        // var day3Temp = $("#temp3");
-        // var day3Humid = $("#humid3");
-        // var day4ND = $("#nd4");
-        // var day4Icon = $("#icon4");
-        // var day4Temp = $("#temp4");
-        // var day4Humid = $("#humid4");
-        // var day5ND = $("#nd5");
-        // var day5Icon = $("#icon5");
-        // var day5Temp = $("#temp5");
-        // var day5Humid = $("#humid5");
+        var day3ND = $("#nd3");
+        var day3Icon = $("#icon3");
+        var day3Temp = $("#temp3");
+        var day3Humid = $("#humid3");
+        var day4ND = $("#nd4");
+        var day4Icon = $("#icon4");
+        var day4Temp = $("#temp4");
+        var day4Humid = $("#humid4");
+        var day5ND = $("#nd5");
+        var day5Icon = $("#icon5");
+        var day5Temp = $("#temp5");
+        var day5Humid = $("#humid5");
         
         var urlFiveDay = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=c34d74a8d0eb82fb6170c0fa6b59b0e8";
 
@@ -124,6 +124,12 @@ function weatherGet(cityParam){
             var icon1URL = "http://openweathermap.org/img/w/" + icon1Code + ".png";
             var icon2Code = response.daily[2].weather[0].icon;
             var icon2URL = "http://openweathermap.org/img/w/" + icon2Code + ".png";
+            var icon3Code = response.daily[3].weather[0].icon;
+            var icon3URL = "http://openweathermap.org/img/w/" + icon3Code + ".png";
+            var icon4Code = response.daily[4].weather[0].icon;
+            var icon4URL = "http://openweathermap.org/img/w/" + icon4Code + ".png";
+            var icon5Code = response.daily[4].weather[0].icon;
+            var icon5URL = "http://openweathermap.org/img/w/" + icon5Code + ".png";
 
 
             day1ND.text(moment().add(1,'days').format("MMM D yyyy"))
@@ -135,6 +141,21 @@ function weatherGet(cityParam){
             day2Icon.append($("<img>",{src: icon2URL}))
             day2Temp.text("Temp: " + (((response.daily[2].temp.day)-273.15)*1.8+32).toFixed(1))
             day2Humid.text("Humidity: " + (response.daily[2].humidity) + "%")
+
+            day3ND.text(moment().add(3,'days').format("MMM D yyyy"))
+            day3Icon.append($("<img>",{src: icon3URL}))
+            day3Temp.text("Temp: " + (((response.daily[3].temp.day)-273.15)*1.8+32).toFixed(1))
+            day3Humid.text("Humidity: " + (response.daily[3].humidity) + "%")
+
+            day4ND.text(moment().add(4,'days').format("MMM D yyyy"))
+            day4Icon.append($("<img>",{src: icon4URL}))
+            day4Temp.text("Temp: " + (((response.daily[4].temp.day)-273.15)*1.8+32).toFixed(1))
+            day4Humid.text("Humidity: " + (response.daily[4].humidity) + "%")
+
+            day5ND.text(moment().add(5,'days').format("MMM D yyyy"))
+            day5Icon.append($("<img>",{src: icon5URL}))
+            day5Temp.text("Temp: " + (((response.daily[5].temp.day)-273.15)*1.8+32).toFixed(1))
+            day5Humid.text("Humidity: " + (response.daily[5].humidity) + "%")
         
         })
     } 
